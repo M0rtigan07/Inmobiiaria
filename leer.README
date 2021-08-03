@@ -1,0 +1,28 @@
+          *****************
+        * Clases y Objetos *
+        ********************
+
+   Una inmobiliaria desea guardar información de sus propiedades
+
+Por un lado tiene casas,  pisos  y terrenos.
+
+Los tres comparten una dirección, localidad, código postal, provincia, precio y precio por metro cuadrado.
+
+Las casas tienen información de metros cuadrados de: Habitaciones, Baños, Sala de estar, Cocina, Parking, otras zonas y zonas de jardín. La suma de todas las superficies debe dar la superficie total utilizable. Además, existe una superficie total del terreno.
+
+Los pisos tienen  información de metros cuadrados de: Habitaciones, Baños, Sala de estar, Cocina, Parking, otras zonas y trastero.
+
+Los terrenos solo tienen información de metros cuadrados y mejoras, que es un texto.
+
+En todos los casos aquella información que está en 0 es que no existe.
+
+Elaborar un programa que tenga esta información, donde se podrán guardar diferentes
+
+ propiedades en algún tipo de estructura como array, vector, o lo que considere mejor.
+
+Además deberá ser capaz de calcular el total del valor de todas las propiedades
+
+Una estimación de las comisiones que se pueden ganar (el % de comisión es variable y se ingresa al momento del cálculo)
+
+El cálculo del IVA a pagar por esas comisiones, asumiendo que es un valor que queda guardado y el calculo de IRPF, asumiendo que es un valor superior al 15 % y que también queda guardado.
+

@@ -13,5 +13,7 @@ namespace Inmobiliaria
         public decimal precio { get; set; }
         public decimal precio_metro { get; set; }
         public decimal valorTotal { get; set; }
+        public decimal valorIRPF { get; set; }
+       
     }
 }

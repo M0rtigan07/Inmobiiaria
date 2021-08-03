@@ -18,12 +18,12 @@ namespace Inmobiliaria
 
             int continuar = 1;
             int tipoAlquiler;
+           
             int comision;
             decimal valorTotal;
             int IRPF = 15;
             int IVA = 10;
-
-
+                       
             while (continuar == 1)
             {
                 Console.Clear();
@@ -41,15 +41,14 @@ namespace Inmobiliaria
                 unAlquiler.provincia = Console.ReadLine();
                 Console.WriteLine("Ingrese su  precio");
                 unAlquiler.precio = Convert.ToDecimal(Console.ReadLine());
-                Console.WriteLine("Ingrese su  precio por metro cuadrado");
-                unAlquiler.precio_metro = Convert.ToDecimal(Console.ReadLine());
+
                 Console.WriteLine("*******************************");
                 Console.WriteLine("Seleccione tipo de alquiler : ");
                 Console.WriteLine("Pulse 1 para Casas ");
                 Console.WriteLine("Pulse 2 para Pisos");
                 Console.WriteLine("Pulse 3 para Terrenos");
-                unaListaAlquiles.Add(unAlquiler);
-
+                  
+                
                 tipoAlquiler = Convert.ToInt32(Console.ReadLine());
 
                 switch (tipoAlquiler)
@@ -57,9 +56,29 @@ namespace Inmobiliaria
                     case 1:
                         Console.WriteLine("Seleccionado tipo Casa");
                         Casas unaCasa = new Casas();
-                        Console.WriteLine("Ingrese los metros cuadrados de las habitaciones");
+                        Console.WriteLine("Ingrese los metros cuadrados de las habitaciones :");
                         unaCasa.habitacionesMetros = Convert.ToDecimal(Console.ReadLine());
+                        Console.WriteLine("Ingrese los metros cuadrados de los baños :");
+                        unaCasa.banosMetros = Convert.ToDecimal(Console.ReadLine());
+                        Console.WriteLine("Ingrese los metros cuadrados de la sala de estar :");
+                        unaCasa.salaMetros = Convert.ToDecimal(Console.ReadLine());
+                        Console.WriteLine("Ingrese los metros cuadrados de la cocina :");
+                        unaCasa.cocinaMetros = Convert.ToDecimal(Console.ReadLine());
+                        Console.WriteLine("Ingrese los metros cuadrados del parking :");
+                        unaCasa.parkingMetros = Convert.ToDecimal(Console.ReadLine());
+                        Console.WriteLine("Ingrese los metros cuadrados de otras zonas :");
+                        unaCasa.zonasMetros = Convert.ToDecimal(Console.ReadLine());
+                        Console.WriteLine("Ingrese los metros cuadrados del jardin :");
+                        unaCasa.jardinMetros = Convert.ToDecimal(Console.ReadLine());
 
+                       
+                       
+                        unAlquiler.precio_metro = unaCasa.habitacionesMetros + unaCasa.banosMetros + unaCasa.salaMetros + unaCasa.cocinaMetros + unaCasa.parkingMetros + unaCasa.zonasMetros + unaCasa.jardinMetros;
+                        unAlquiler.precio_metro = unAlquiler.precio_metro * unAlquiler.precio;
+
+                        Console.WriteLine(" Calculado precio X metros : {0}", unAlquiler.precio_metro);
+
+                        unaListaAlquiles.Add(unAlquiler);
                         unaListaCasas.Add(unaCasa);
                         break;
                     case 2:
@@ -86,14 +105,42 @@ namespace Inmobiliaria
                     Console.Clear();
                     Console.WriteLine("***********************************");
                     Console.WriteLine("******  CALCULAR EL VALOR TOTAL DE  SUS  ALQUILERES  *****************************");
-                    Console.WriteLine("  Introduce el valor de las comisiones    ");
+
+                    Console.WriteLine("  Introduce el valor de las comisiones :  ");
                     comision = Convert.ToInt32(Console.ReadLine());
+                    decimal valorComision;
+
+                   // List <Alquileres>  listaValor = (from x  in unaListaAlquiles select x  ).ToList();
+                    
+                    valorTotal = unaListaAlquiles.Sum(x => x.precio_metro )  ;
+                    Console.WriteLine("Calculado  valor Total de Alquileres : {0}", valorTotal);
+
+                    valorComision = valorTotal + comision / 100;
+
+                    
+                    decimal irpf = valorTotal + 15 / 100;
+                    decimal todo = valorTotal + valorComision;
+                    
+
+                    if( valorComision > irpf )
+                    {
+                        Console.WriteLine("Debe pagar {0}  de IVA", irpf);
+                    
+                        
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("Valor Total + Comisiones : {0}",todo );
+                        unaListaAlquiles.Add(unAlquiler);
+                    }
+
                 }
 
 
 
             }
-            Console.Clear();
+           
             Console.WriteLine("***********************************");
             Console.WriteLine("    FIN DE PROGRAMA   ");
         }
